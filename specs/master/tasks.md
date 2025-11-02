@@ -10,24 +10,24 @@
 
 ## Phase 2: Foundational (Blocking Prerequisites)
 
-- [ ] T006 Implement Windows message loop in `src/main.rs`
-- [ ] T007 Create utility function for polling RAM data using `GlobalMemoryStatusEx`
-- [ ] T008 Create basic system tray icon using `tray-icon` crate
+- [X] T006 Implement Windows message loop in `src/main.rs`
+- [X] T007 Create utility function for polling RAM data using `GlobalMemoryStatusEx`
+- [X] T008 Create basic system tray icon using `tray-icon` crate
 
 ## Phase 3: User Story 1 - Display Real-Time RAM Usage (Priority: P1)
 
-- [ ] T009 [US1] Display RAM usage percentage as overlay on system tray icon
-- [ ] T010 [US1] Update tray icon every second with latest RAM usage
+- [X] T009 [US1] Display RAM usage percentage as overlay on system tray icon
+- [X] T010 [US1] Update tray icon every second with latest RAM usage
 
 ## Phase 4: User Story 2 - Tooltip with Detailed Stats (Priority: P2)
 
-- [ ] T011 [US2] Display tooltip with Used/Total/Free RAM in GB when hovering over tray icon
-- [ ] T012 [US2] Update tooltip with latest RAM statistics every second
+- [X] T011 [US2] Display tooltip with Used/Total/Free RAM in GB when hovering over tray icon
+- [X] T012 [US2] Update tooltip with latest RAM statistics every second
 
 ## Phase 5: User Story 3 - Right-Click Context Menu (Priority: P2)
 
-- [ ] T013 [US3] Add right-click context menu to tray icon
-- [ ] T014 [US3] Implement "Exit" option to close the application
+- [X] T013 [US3] Add right-click context menu to tray icon
+- [X] T014 [US3] Implement "Exit" option to close the application
 
 ## Phase 6: User Story 4 - Auto-Start Capability (Priority: P3)
 
