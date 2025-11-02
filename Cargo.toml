@@ -4,7 +4,7 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-windows = { version = "0.62", features = ["Win32", "Win32_System", "Win32_UI", "Win32_System_Threading", "Win32_UI_WindowsAndMessaging", "Win32_System_SystemInformation"] }
+windows = { version = "0.62", features = ["Win32", "Win32_System", "Win32_UI", "Win32_System_Threading", "Win32_UI_WindowsAndMessaging", "Win32_System_SystemInformation", "Win32_System_Registry", "Win32_Security"] }
 tray-icon = "0.14"
 
 [profile.release]

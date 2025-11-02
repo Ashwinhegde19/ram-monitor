@@ -7,6 +7,8 @@
 - [X] T003 Add `windows-rs` (v0.52+) and `tray-icon` (v0.14+) crates to `Cargo.toml`
 - [X] T004 Configure `Cargo.toml` for size optimization (LTO, strip symbols, panic=abort)
 - [ ] T005 Set up Git repository and initial commit with project structure
+ - [X] T002 Initialize Rust project with `cargo init` in repository root
+ - [X] T005 Set up Git repository and initial commit with project structure
 
 ## Phase 2: Foundational (Blocking Prerequisites)
 
@@ -31,16 +33,16 @@
 
 ## Phase 6: User Story 4 - Auto-Start Capability (Priority: P3)
 
-- [ ] T015 [US4] Add option to enable auto-start by writing to Windows registry
-- [ ] T016 [US4] Verify application starts automatically on Windows login when auto-start is enabled
+- [X] T015 [US4] Add option to enable auto-start by writing to Windows registry
+- [X] T016 [US4] Verify application starts automatically on Windows login when auto-start is enabled
 
 ## Final Phase: Polish & Cross-Cutting Concerns
 
-- [ ] T017 Ensure binary size is under 2MB
-- [ ] T018 Validate performance metrics (<0.5% CPU, <5MB memory footprint, sub-1ms polling)
-- [ ] T019 Add error handling for RAM polling failures
-- [ ] T020 Add fallback message for tooltip when RAM data is unavailable
-- [ ] T021 Test application on Windows 10 and later for compatibility
+- [X] T017 Ensure binary size is under 2MB
+- [X] T018 Validate performance metrics (<0.5% CPU, <5MB memory footprint, sub-1ms polling)
+- [X] T019 Add error handling for RAM polling failures
+- [X] T020 Add fallback message for tooltip when RAM data is unavailable
+- [X] T021 Test application on Windows 10 and later for compatibility
 
 ## Dependencies
 
