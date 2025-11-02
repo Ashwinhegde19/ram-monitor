@@ -99,45 +99,6 @@ cargo run --release
 - `CreateWindowExW` - Layered window with WS_EX_TOPMOST
 - `SetLayeredWindowAttributes` - Glass transparency effect
 
-## 🎨 Customization
-
-### Change Update Speed
-Edit `src/main.rs` line ~152:
-```rust
-thread::sleep(Duration::from_millis(500)); // Change 500 to desired ms
-```
-
-### Change Window Position
-Edit `src/main.rs` line ~137:
-```rust
-10, 10, 240, 36,  // x, y, width, height
-// Examples:
-// Top-right: screen_width - 250, 10, 240, 36
-// Bottom-right: screen_width - 250, screen_height - 50, 240, 36
-```
-
-### Change Transparency
-Edit `src/main.rs` line ~146:
-```rust
-200,  // 0 = invisible, 255 = opaque, 200 = 78% opaque
-```
-
-### Change Colors
-Edit the glass effect colors in `window_proc` WM_PAINT handler:
-```rust
-COLORREF(0x00463020)  // Background (BGR format)
-COLORREF(0x00FFDD88)  // Text color
-```
-## 🧪 Testing
-
-```powershell
-# Quick smoke test
-Start-Process .\target\release\ram-monitor.exe -PassThru
-Start-Sleep -Seconds 3
-Get-Process -Name ram-monitor
-Stop-Process -Name ram-monitor -Force
-```
-
 ## ❓ Troubleshooting
 
 **Window doesn't appear?**
@@ -156,14 +117,6 @@ Stop-Process -Name ram-monitor -Force
 **Can't move the window?**
 - Left-click and **hold**, then drag
 - If stuck, restart the app
-
-## 🗺️ Roadmap
-
-- [ ] Multiple theme options (dark, light, custom colors)
-- [ ] Save window position across restarts
-- [ ] Show network usage
-- [ ] Disk I/O statistics
-- [ ] Configurable hotkey to show/hide
 
 ## 📄 License
 
@@ -192,4 +145,4 @@ If you find this useful, give it a star! ⭐
 
 ---
 
-**Made with ❤️ using Rust and Windows API**
+**Made with ❤️ by @Ashwinhegde19**
