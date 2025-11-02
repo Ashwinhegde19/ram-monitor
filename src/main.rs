@@ -7,15 +7,10 @@ use tray_icon::{TrayIconBuilder, Icon, menu::Menu, menu::MenuItem};
 use std::time::Duration;
 
 fn main() {
-    println!("Starting Windows message loop...");
-
-    unsafe {
-        let mut msg = MSG::default();
-        while GetMessageW(&mut msg, None, 0, 0).into() {
-            let _ = TranslateMessage(&msg);
-            DispatchMessageW(&msg);
-        }
-    }
+    println!("Starting RAM Monitor...");
+    
+    // Create tray icon and update tooltip with RAM stats every second
+    update_tooltip_with_ram_stats();
 }
 
 fn get_ram_usage() -> Result<(u64, u64, u64), String> {
