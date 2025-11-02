@@ -1,116 +1,195 @@
-# RAM Monitor
+# RAM Monitor v1.0.0
 
-A lightweight Windows system-tray RAM and CPU monitor written in Rust.
+A beautiful, lightweight Windows RAM and CPU monitor with an always-on-top glass design overlay.
 
 ![RAM Monitor](https://img.shields.io/badge/platform-Windows-blue)
+![Version](https://img.shields.io/badge/version-1.0.0-green)
 ![License](https://img.shields.io/badge/license-MIT-green)
 
 ## 📥 Download
 
-**[Download ram-monitor.exe](releases/ram-monitor.exe)** (Latest Release)
+**[Download ram-monitor.exe v1.0.0](https://github.com/Ashwinhegde19/ram-monitor/releases/download/v1.0.0/ram-monitor.exe)** 
 
-Simply download and run - no installation required!
+Or grab it from the [releases](releases/) folder - only **~190KB**!
 
-## Features
+## ✨ Features
 
-- ⚡ Shows real-time RAM and CPU usage in system tray tooltip
-- 📊 Format: `3.44/16.0 RAM 67%CPU` (Used/Total RAM in GB, CPU percentage)
-- 🔄 Updates every second
-- 🪶 Minimal resource usage (optimized Rust binary)
-- 🚀 Optional auto-start with Windows (functions included)
+### 🎨 **Glass Overlay Design**
+- **Always-on-top floating window** with beautiful glass/aero effect
+- **Blue-purple gradient** with glowing cyan-gold text
+- **Semi-transparent** (78% opacity) - see through to your desktop
+- **Real-time updates** every 500ms - never stuck!
 
-## Usage
+### 📊 **Live Stats Display**
+- Shows: `7.85/13.9 RAM  25%CPU`
+- Format: `Used/Total RAM (GB)  CPU%`
+- Updates twice per second for instant feedback
 
-1. Download `ram-monitor.exe` from the releases folder
-2. Double-click to run
-3. Look for the white square icon in your system tray (near the clock)
-4. Hover over the icon to see: **`3.44/16.0 RAM  67%CPU`**
-5. To stop: Press `Ctrl+C` in the terminal, or use Task Manager
+### 🖱️ **Interactive**
+- **Left-click and drag** to move anywhere on screen
+- Position it wherever you want - top-left, top-right, center, anywhere!
+- **Right-click** to close the app
+- No taskbar button - stays out of your way
 
-## Build from Source
+### ⚡ **Lightweight**
+- **~190KB** file size
+- **<5MB** RAM usage
+- **<1%** CPU usage average
+- Pure Rust - no dependencies, no bloat
+
+## 🚀 Quick Start
+
+1. **Download** `ram-monitor.exe` from releases
+2. **Double-click** to run
+3. **Drag** the floating window to your preferred position
+4. **Enjoy** live RAM and CPU stats always visible!
+
+**To close:** Right-click the window or press `Ctrl+C` in terminal
+
+## 📸 Screenshot
+
+The window displays as a sleek glass overlay:
+```
+┌──────────────────────────┐
+│  7.85/13.9 RAM  25%CPU  │ ← Glass effect with glow
+└──────────────────────────┘
+```
+
+## 🛠️ Build from Source
 
 ### Requirements
-- Rust (stable)
+- Rust (latest stable)
 - Windows 10/11
 - Visual Studio Build Tools (Desktop development with C++)
 
-### Build
+### Build Steps
 ```powershell
 # Clone the repository
-git clone <your-repo-url>
+git clone https://github.com/Ashwinhegde19/ram-monitor.git
 cd ram-monitor
 
-# Build release binary
+# Build optimized release binary
 cargo build --release
+
+# The exe will be in target/release/ram-monitor.exe
 ```
 
 ### Run
 ```powershell
-# Run the compiled binary
+# Run the release binary
 .\target\release\ram-monitor.exe
 
-# Or run in development mode
+# Or run directly with cargo
 cargo run --release
 ```
 
-## Technical Details
+## ⚙️ Technical Details
 
-- **Language:** Rust
-- **Size:** ~500KB (optimized with LTO and strip)
-- **Memory:** <5MB RAM usage
-- **CPU:** Minimal (<1% average)
-- **APIs Used:** 
-  - `GlobalMemoryStatusEx` for RAM monitoring
-  - `GetSystemTimes` for CPU usage calculation
-  - Windows Registry API for auto-start feature
+- **Language:** Rust (stable)
+- **Binary Size:** ~190KB (optimized with LTO and strip)
+- **Memory Usage:** <5MB
+- **CPU Usage:** <1% average
+- **Update Frequency:** 500ms (2x per second)
+- **Window Size:** 240x36 pixels
+- **Opacity:** 78% (LWA_ALPHA = 200)
 
-## Configuration
+**Windows APIs Used:**
+- `GlobalMemoryStatusEx` - RAM statistics
+- `GetSystemTimes` - CPU usage calculation
+- `CreateWindowExW` - Layered window with WS_EX_TOPMOST
+- `SetLayeredWindowAttributes` - Glass transparency effect
 
-To modify update interval, edit `src/main.rs`:
+## 🎨 Customization
+
+### Change Update Speed
+Edit `src/main.rs` line ~152:
 ```rust
-thread::sleep(Duration::from_secs(1)); // Change from 1 to desired seconds
+thread::sleep(Duration::from_millis(500)); // Change 500 to desired ms
 ```
 
-## Auto-Start with Windows
-
-Functions are included in the code to enable/disable auto-start. To use them, uncomment the calls in `main()`:
-
+### Change Window Position
+Edit `src/main.rs` line ~137:
 ```rust
-// Enable auto-start
-enable_auto_start().expect("Failed to enable auto-start");
-
-// Disable auto-start
-disable_auto_start().expect("Failed to disable auto-start");
+10, 10, 240, 36,  // x, y, width, height
+// Examples:
+// Top-right: screen_width - 250, 10, 240, 36
+// Bottom-right: screen_width - 250, screen_height - 50, 240, 36
 ```
-## Testing
+
+### Change Transparency
+Edit `src/main.rs` line ~146:
+```rust
+200,  // 0 = invisible, 255 = opaque, 200 = 78% opaque
+```
+
+### Change Colors
+Edit the glass effect colors in `window_proc` WM_PAINT handler:
+```rust
+COLORREF(0x00463020)  // Background (BGR format)
+COLORREF(0x00FFDD88)  // Text color
+```
+## 🧪 Testing
 
 ```powershell
-# Smoke test - verify it starts and runs
-Start-Process .\target\release\ram-monitor.exe -PassThru | Select-Object Id
-Start-Sleep -Seconds 2
-Get-Process -Name ram-monitor -ErrorAction SilentlyContinue
+# Quick smoke test
+Start-Process .\target\release\ram-monitor.exe -PassThru
+Start-Sleep -Seconds 3
+Get-Process -Name ram-monitor
 Stop-Process -Name ram-monitor -Force
 ```
 
-## Troubleshooting
+## ❓ Troubleshooting
 
-**Icon not visible?**
-- Check the system tray overflow (click ^ arrow near the clock)
-- Ensure the process is running: `Get-Process ram-monitor`
+**Window doesn't appear?**
+- Check top-left corner (10, 10) - it's small!
+- Ensure process is running: `Get-Process ram-monitor`
+- Try running from PowerShell/CMD to see error messages
 
-**Build fails with `link.exe` not found?**
-- Install Visual Studio Build Tools with "Desktop development with C++" workload
+**Stats not updating?**
+- Give it 1-2 seconds for first CPU calculation
+- Window updates every 500ms automatically via WM_TIMER
 
-**CPU shows 0%?**
-- CPU usage is calculated after the first update cycle (takes ~1-2 seconds)
+**Build fails?**
+- Install Visual Studio Build Tools with "Desktop development with C++"
+- Ensure Rust is latest stable: `rustup update stable`
 
-## License
+**Can't move the window?**
+- Left-click and **hold**, then drag
+- If stuck, restart the app
 
-MIT License - Feel free to use and modify!
+## 🗺️ Roadmap
 
-## Contributing
+- [ ] Multiple theme options (dark, light, custom colors)
+- [ ] Save window position across restarts
+- [ ] Show network usage
+- [ ] Disk I/O statistics
+- [ ] Configurable hotkey to show/hide
 
-Pull requests welcome! Please ensure:
-- Code compiles without errors
-- Binary size stays under 1MB
-- Memory usage remains minimal
+## 📄 License
+
+MIT License - See [LICENSE](LICENSE) file
+
+Copyright (c) 2025 Ashwinhegde19
+
+## 🤝 Contributing
+
+Contributions welcome! Please:
+1. Fork the repo
+2. Create a feature branch
+3. Make your changes
+4. Test thoroughly
+5. Submit a pull request
+
+**Guidelines:**
+- Keep binary size minimal (<500KB)
+- Maintain low memory footprint
+- No external dependencies unless absolutely necessary
+- Follow Rust best practices
+
+## ⭐ Star This Repo!
+
+If you find this useful, give it a star! ⭐
+
+---
+
+**Made with ❤️ using Rust and Windows API**
