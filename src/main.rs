@@ -1,3 +1,4 @@
+#![windows_subsystem = "windows"]
 use windows::Win32::System::SystemInformation::{GlobalMemoryStatusEx, MEMORYSTATUSEX};
 use windows::Win32::System::Threading::GetSystemTimes;
 use windows::Win32::Foundation::{FILETIME, HWND, LPARAM, WPARAM, LRESULT, RECT, COLORREF};
