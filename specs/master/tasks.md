@@ -2,10 +2,10 @@
 
 ## Phase 1: Setup (Project Initialization)
 
-- [ ] T001 Create project structure per implementation plan
+- [X] T001 Create project structure per implementation plan
 - [ ] T002 Initialize Rust project with `cargo init` in repository root
-- [ ] T003 Add `windows-rs` (v0.52+) and `tray-icon` (v0.14+) crates to `Cargo.toml`
-- [ ] T004 Configure `Cargo.toml` for size optimization (LTO, strip symbols, panic=abort)
+- [X] T003 Add `windows-rs` (v0.52+) and `tray-icon` (v0.14+) crates to `Cargo.toml`
+- [X] T004 Configure `Cargo.toml` for size optimization (LTO, strip symbols, panic=abort)
 - [ ] T005 Set up Git repository and initial commit with project structure
 
 ## Phase 2: Foundational (Blocking Prerequisites)
