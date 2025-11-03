@@ -12,6 +12,8 @@ A beautiful, lightweight Windows RAM and CPU monitor with an always-on-top glass
 
 Or grab it from the [releases](releases/) folder - only **~190KB**!
 
+> **Note:** Currently available for Windows. macOS and Linux support coming soon!
+
 ## ✨ Features
 
 ### 🎨 **Glass Overlay Design**
